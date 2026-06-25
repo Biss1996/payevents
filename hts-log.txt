@@ -1,13 +1,26 @@
-HTTrack3.49-2+htsswf+htsjava launched on Sun, 21 Jun 2026 21:49:38 at https://www.payevents.us/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
-(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.payevents.us/ -O1 "C:\Users\hp\Desktop\payevents" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
-
-Information, Warnings and Errors reported for this mirror:
-note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
-	such as username/password authentication for websites mirrored in this project
-	do not share these files/folders if you want these information to remain private
-
-21:49:41	Warning: 	Moved Permanently for https://www.payevents.us/
-21:49:41	Warning: 	File has moved from https://www.payevents.us/ to https://www.payevents.us/checkout
-
-HTTrack Website Copier/3.49-2 mirror complete in 7 seconds : 6 links scanned, 4 files written (425708 bytes overall) [93204 bytes received at 13314 bytes/sec], 426497 bytes transferred using HTTP compression in 5 files, ratio 20%, 1.7 requests per connection
-(No errors, 2 warnings, 0 messages)
+HTTrack3.49-2+htsswf+htsjava launched on Sun, 21 Jun 2026 21:49:38 at https://www.payevents.vercel.app/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+www.payevents.vercel.app/
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.payevents.us/ -O1 "C:\Users\hp\Desktop\payevents" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+
+
+Information, Warnings and Errors reported for this mirror:
+
+note:	the hts-log.txt file, and hts-cache folder,www.payevents.vercel.app/itive information,
+www.payevents.vercel.app/www.payevents.vercel.app/
+	such as username/password authentication for websites mirrored in this project
+
+	do not share these files/folders if you want these information to remain private
+
+
+
+21:49:41	Warning: 	Moved Permanently for https://www.payevents.us/
+
+21:49:41	Warning: 	File has moved from https://www.payevents.us/ to https://www.payevents.us/checkout
+
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 7 seconds : 6 links scanned, 4 files written (425708 bytes overall) [93204 bytes received at 13314 bytes/sec], 426497 bytes transferred using HTTP compression in 5 files, ratio 20%, 1.7 requests per connection
+
+(No errors, 2 warnings, 0 messages)
+

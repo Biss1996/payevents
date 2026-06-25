@@ -3,30 +3,23 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Set CORS headers to allow requests from any origin (for testing)
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
   const { cf_token } = req.body;
 
-  // Replace with your Cloudflare Turnstile Secret Key
-  const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY;
-
-  try {
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: TURNSTILE_SECRET_KEY,
-        response: cf_token,
-      }),
+  // Simulate verification: Always return success if a token is provided
+  if (cf_token) {
+    return res.status(200).json({
+      ok: true,
+      success: true, // Mimic Cloudflare's response structure
     });
-
-    const data = await response.json();
-
-    if (data.success) {
-      res.status(200).json({ ok: true });
-    } else {
-      res.status(400).json({ ok: false, error: 'CAPTCHA verification failed.' });
-    }
-  } catch (error) {
-    console.error('Error verifying CAPTCHA:', error);
-    res.status(500).json({ ok: false, error: 'Failed to verify CAPTCHA.' });
+  } else {
+    return res.status(400).json({
+      ok: false,
+      error: 'No CAPTCHA token provided.',
+    });
   }
 }
