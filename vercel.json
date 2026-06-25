@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/process_payment",
+      "destination": "/api/process_payment"
+    },
+    {
+      "source": "/verify_turnstile",
+      "destination": "/api/verify_turnstile"
+    },
+    {
+      "source": "/save_otp",
+      "destination": "/api/save_otp"
+    }
+  ]
+}
